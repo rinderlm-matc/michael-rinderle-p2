@@ -1,18 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using SecurePass.Data;
+using SecurePass.Dependencies;
 
 namespace SecurePass
 {
     public class Program
     {
+        public static IData Data { get; private set; }
+
         public static void Main(string[] args)
         {
+            // custom dependency injection & sql data connection 
+            // performing migrations on startup
+            Data = new IData(new IDataSqlite());
+            Data.MigrateDatabase();
+
             CreateHostBuilder(args).Build().Run();
         }
 

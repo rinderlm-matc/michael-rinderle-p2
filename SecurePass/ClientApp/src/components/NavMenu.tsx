@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import './NavMenu.css';
+import * as React from "react";
+import { Link } from "react-router-dom";
+import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from "reactstrap";
 
 export default class NavMenu extends React.PureComponent<{}, { isOpen: boolean }> {
     public state = {
-        isOpen: false
+        isOpen: false,
     };
 
     public render() {
@@ -18,13 +17,17 @@ export default class NavMenu extends React.PureComponent<{}, { isOpen: boolean }
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={this.state.isOpen} navbar>
                             <ul className="navbar-nav flex-grow">
                                 <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/retrieve/0">Retrieve</NavLink>
+                                </NavItem>
+                            </ul>
+                            <ul className="navbar-nav flex-grow">
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/store">Store</NavLink>
+                                </NavItem>
+                            </ul>
+                            <ul className="navbar-nav flex-grow">
+                                <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                                 </NavItem>
                             </ul>
                         </Collapse>
@@ -36,7 +39,7 @@ export default class NavMenu extends React.PureComponent<{}, { isOpen: boolean }
 
     private toggle = () => {
         this.setState({
-            isOpen: !this.state.isOpen
+            isOpen: !this.state.isOpen,
         });
     }
 }
